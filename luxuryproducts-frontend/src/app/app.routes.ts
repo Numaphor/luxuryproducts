@@ -11,6 +11,7 @@ import {ProfileUpdateComponent} from "./profile/profile-update/profile-update.co
 import {OrderComponent} from "./order/order.component";
 import {PaymentSuccessfulComponent} from "./order/payment-successful/payment-successful.component";
 import { OrderHistoryComponent } from './profile/order-history/order-history.component';
+import { GiftcardComponent } from './giftcard/giftcard.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,8 @@ export const routes: Routes = [
   {path: 'order-history', component: OrderHistoryComponent, canActivate: [authGuard] },
   {path: 'paymentsuccessful', component: PaymentSuccessfulComponent, canActivate: [authGuard]},
   {path: 'orders', component: OrderComponent, canActivate: [authGuard]},
+  {path: 'giftcards', component: GiftcardComponent },
+
 ];
 
 
