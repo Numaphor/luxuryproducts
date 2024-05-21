@@ -1,15 +1,24 @@
 package com.example.gamewebshop.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import java.util.
 
-import java.util.Set;
+Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 
 @Entity(name = "Users")
 public class CustomUser {
     @Id
     @GeneratedValue
+
     private Long id;
 
     private String name;
@@ -20,14 +29,26 @@ public class CustomUser {
 
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private Set<PlacedOrder> placedOrders;
     public CustomUser() {
     }
 
-    public CustomUser(String name, String infix, String lastName, String email, String password) {
-        this.name = name;
+    
+    // In CustomUser.java
+@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+@JsonManagedReference
+    private Set<Giftcard> giftcards;
+    
+    public Set<Giftcard> getGiftcards() {
+    return giftcards;
+    }
+        
+    public void setGiftcards(Set<Giftcard> giftcards) {
+    this.giftcards = giftcards;
+    }
+        public CustomUser(String name, String infix, String lastName, String email, String password) {
+            this.name = name;
+
         this.infix = infix;
         this.lastName = lastName;
         this.email = email;
@@ -91,4 +112,5 @@ public class CustomUser {
         return id;
     }
 }
+
 
